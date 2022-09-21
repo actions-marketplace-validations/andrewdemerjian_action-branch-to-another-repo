@@ -1,5 +1,5 @@
 # Action branch to another repository 
-This GitHub Action copies a folder from the current repository to a branch in a new repository
+This GitHub Action copies a folder from the current repository to a branch in a new repository. 
 
 ## Example Workflow
     name: Push File
@@ -7,14 +7,14 @@ This GitHub Action copies a folder from the current repository to a branch in a 
     on: push
 
     jobs:
-      pull-request:
+      create-branch:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
           uses: actions/checkout@v3
 
-        - name: Create pull request
-          uses: andrewdemerjian/action-pull-request-another-repo@v1.0.1
+        - name: Create branch
+          uses: andrewdemerjian/action-branch-to-another-repo@v1
           env:
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           with:
@@ -23,9 +23,8 @@ This GitHub Action copies a folder from the current repository to a branch in a 
             destination_folder: 'folder-name'
             destination_base_branch: 'branch-name'
             destination_head_branch: 'branch-name'
-            user_email: 'user-name@paygo.com.br'
+            user_email: 'user-name@email.com'
             user_name: 'user-name'
-            pull_request_reviewers: 'reviewers'
             allow_force_push: 'false'
 
 ## Variables
@@ -36,7 +35,6 @@ This GitHub Action copies a folder from the current repository to a branch in a 
 * user_name: The GitHub username associated with the API token secret.
 * destination_base_branch: [optional] The branch into which you want your code merged. Default is `main`.
 * destination_head_branch: The branch to create to push the changes. Cannot be `master` or `main`.
-* pull_request_reviewers: [optional] The pull request reviewers. It can be only one (just like 'reviewer') or many (just like 'reviewer1,reviewer2,...')
 * allow_force_push: [optional] Allow force push. Push with `--force` flag.
 
 ## ENV
