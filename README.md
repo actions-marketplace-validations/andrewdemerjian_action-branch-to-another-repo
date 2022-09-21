@@ -1,5 +1,5 @@
-# Action pull request another repository 
-This GitHub Action copies a folder from the current repository to a location in another repository and create a pull request
+# Action branch to another repository 
+This GitHub Action copies a folder from the current repository to a branch in a new repository
 
 ## Example Workflow
     name: Push File
@@ -11,10 +11,10 @@ This GitHub Action copies a folder from the current repository to a location in 
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
 
         - name: Create pull request
-          uses: paygoc6/action-pull-request-another-repo@v1.0.1
+          uses: andrewdemerjian/action-pull-request-another-repo@v1.0.1
           env:
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           with:
