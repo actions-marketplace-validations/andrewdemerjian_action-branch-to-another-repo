@@ -1,5 +1,5 @@
-name: 'Pull Request another repository'
-description: 'Used for pull request a copy of a folder to another repository'
+name: 'Branch to another repository'
+description: 'Used to create a branch of newly committed files in another repository'
 inputs:
   source_folder:
     description: 'Source folder from origin'
@@ -23,9 +23,6 @@ inputs:
     description: 'The branch into which you want your code merged.'
     required: false
     default: "main"
-  pull_request_reviewers:
-    description: 'Pull request reviewers users'
-    required: false
   allow_force_push:
     description: 'Allow force push'
     default: 'false'
@@ -41,7 +38,6 @@ runs:
     - ${{ inputs.user-name }}
     - ${{ inputs.destination-head-branch }}
     - ${{ inputs.destination-base-branch }}
-    - ${{ inputs.pull-request-reviewers }}
 branding:
   icon: 'git-commit'
   color: 'green'
