@@ -43,7 +43,7 @@ then
     git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
   else
     echo "Force push enabled"
-    git pull --rebase
+    git pull --rebase HEAD:$INPUT_DESTINATION_HEAD_BRANCH
     git push -uf origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
     return 0
   fi
