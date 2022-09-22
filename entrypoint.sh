@@ -27,7 +27,17 @@ git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$C
 
 echo "Copying contents to git repo"
 mkdir -p $CLONE_DIR/$INPUT_DESTINATION_FOLDER/
-./git-copy.sh git-hash-1 git-hash-2 "$CLONE_DIR/$INPUT_DESTINATION_FOLDER/"
+
+echo "Finding and copying files and folders to $TARGET"
+for i in $(git diff --name-only --depth 1)
+  do
+    # First create the target directory, if it doesn't exist.
+    mkdir -p "$CLONE_DIR/$INPUT_DESTINATION_FOLDER/$(dirname $i)"
+    # Then copy over the file.
+    cp "$i" "$TARGET/$i"
+  done
+  
+echo "Files copied to target directory";
 cd "$CLONE_DIR"
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 
